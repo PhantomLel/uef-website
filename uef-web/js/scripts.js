@@ -53,6 +53,46 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-function writePrayerTimes() {
-    fetch("config.json")
+
+
+
+function loadGalleryImgs() {    
+    var folder = "assets/imgs/gallery/";
+    
+    $.ajax({
+        url : folder,
+        success: function (data) {
+            // check if file found is an image
+            $(data).find("a").attr("href", function (i, val) {
+                if( val.match(/\.(jpe?g|png|gif)$/) ) { 
+                    $("#gallery-imgs").append(`<div class=\"col-sm-12 col-md-4\">\n <a class=\"lightbox\" href=\"#">\n<img src="${folder+val}" alt="masjid image">\n</a>\n</div>\n`);
+                } 
+            });
+        }
+    });
 }
+
+
+function isInViewPort(element) {
+    // Get the bounding client rectangle position in the viewport
+    var bounding = element.getBoundingClientRect();
+
+    if (bounding.top < window.innerHeight) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function animatePrayerTimes() {
+    console.log("h")
+    if (isInViewPort(document.getElementById("animated_prayertimes"))) {
+        $("#prayertimes").addClass("animate__zoomIn");
+    }
+}
+
+if (document.getElementById("animated_prayertimes") != null) {
+    $(window).on('DOMContentLoaded load resize scroll', animatePrayerTimes);
+}
+
+loadGalleryImgs()

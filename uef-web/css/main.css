@@ -62,7 +62,7 @@
 
 .rwd-table {
   background: #34495E;
-  color: #fff;
+  color: rgb(172, 172, 172);
   border-radius: .4em;
   overflow: hidden;
 }
@@ -82,6 +82,6 @@
 }
 
 .rwd-table th, .rwd-table td:before {
-  color: #dd5;
+  color: whitesmoke;
 }
 /*# sourceMappingURL=thing.css.map */
